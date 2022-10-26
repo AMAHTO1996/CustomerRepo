@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
+import music.api.entity.MusicDO;
 import com.amit.customer.entities.UserDO;
 import com.amit.customer.service.CustomerService;
 
@@ -51,7 +51,7 @@ public class CustomerController {
 		l1.add(musicDO1);
 		l1.add(musicDO2);
 		l1.add(musicDO3);
-		return null;
+		return l1;
 		
 	}
 
