@@ -42,10 +42,10 @@ public class CustomerController {
 		MusicDO musicDO1 = new MusicDO(1, "Dil Ka Rishta - Jhankar ", "Tum Na Aaye Ho Tum Naa Aaoge", "https://i.ytimg.com/vi/u5MN540x3Tk/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBFm7IRIOL7RrmB4KqJIu1jKGQwAg", "background_image", false,
 				"/", "3.50", 178, 12, 7.8, "/",
 				"field1", "field2", "field3", "field4", "field5");
-		MusicDO musicDO2 = new MusicDO(1, "title", "description", "https://github.com/AMAHTO1996/amitkumar-portfolio-web/blob/master/images/image_3.jpg", "background_image", false,
+		MusicDO musicDO2 = new MusicDO(2, "title", "description", "https://github.com/AMAHTO1996/amitkumar-portfolio-web/blob/master/images/image_3.jpg", "background_image", false,
 				"/", "4.50", 178, 12, 7.8, "/",
 				"field1", "field2", "field3", "field4", "field5");
-		MusicDO musicDO3 = new MusicDO(1, "title", "description", "https://github.com/AMAHTO1996/amitkumar-portfolio-web/blob/master/images/image_3.jpg", "background_image", false,
+		MusicDO musicDO3 = new MusicDO(3, "title", "description", "https://github.com/AMAHTO1996/amitkumar-portfolio-web/blob/master/images/image_3.jpg", "background_image", false,
 				"/", "6.50", 178, 12, 7.8, "/",
 				"field1", "field2", "field3", "field4", "field5");
 		List<MusicDO> l1 = new ArrayList<>();
