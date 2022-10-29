@@ -44,7 +44,7 @@ public class CustomerController {
 	@GetMapping("/allmusic")
 	public ResponseEntity<List<MusicDO>> getAllMusic(){
 		List<MusicDO> l1 = new ArrayList<>();
-		MusicDO musicDO1 = new MusicDO(1, "Dil Ka Rishta - Jhankar ", "Tum Na Aaye Ho Tum Naa Aaoge", "https://u.pcloud.link/publink/show?code=XZAatuVZ2OrNSCJxCNJJYHNCbkuw9Jf6s0L7", "background_image", false,
+		MusicDO musicDO1 = new MusicDO(1, "Dil Ka Rishta - Jhankar ", "Tum Na Aaye Ho Tum Naa Aaoge", "https://amahto.jfrog.io/artifactory/Image/Screenshot%202022-10-29%20163739.jpg", "background_image", false,
 				"/", "3.50", 178, 12, 7.8, "/",
 				"field1", "field2", "field3", "field4", "field5");
 		MusicDO musicDO2 = new MusicDO(1, "Tera Ye Ishq Mera Fitoor", "Tera Ye Ishq Mera Fitoor Lyrics - Arijit Singh | Neeti Mohan | Ranbir K,Vaani K| Mithoon | Shamshera", "https://i.ytimg.com/vi/j-rne2Q5fao/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBi94CO_468wdRdpIMiePetx9WHcg", "background_image", false,
