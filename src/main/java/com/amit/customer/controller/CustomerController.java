@@ -2,11 +2,12 @@ package com.amit.customer.controller;
 
 import java.util.List;
 import java.util.ArrayList;
-
+import java.util.Optional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import music.api.entity.MusicDO;
@@ -47,16 +48,38 @@ public class CustomerController {
 		MusicDO musicDO1 = new MusicDO(1, "Dil Ka Rishta - Jhankar ", "Tum Na Aaye Ho Tum Naa Aaoge", "https://amahto.jfrog.io/artifactory/Image/Screenshot%202022-10-29%20163739.jpg", "background_image", false,
 				"/", "3.50", 178, 12, 7.8, "/",
 				"field1", "field2", "field3", "field4", "field5");
-		MusicDO musicDO2 = new MusicDO(1, "Tera Ye Ishq Mera Fitoor", "Tera Ye Ishq Mera Fitoor Lyrics - Arijit Singh | Neeti Mohan | Ranbir K,Vaani K| Mithoon | Shamshera", "https://i.ytimg.com/vi/j-rne2Q5fao/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBi94CO_468wdRdpIMiePetx9WHcg", "background_image", false,
+		MusicDO musicDO2 = new MusicDO(2, "Tera Ye Ishq Mera Fitoor", "Tera Ye Ishq Mera Fitoor Lyrics - Arijit Singh | Neeti Mohan | Ranbir K,Vaani K| Mithoon | Shamshera", "https://i.ytimg.com/vi/j-rne2Q5fao/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBi94CO_468wdRdpIMiePetx9WHcg", "background_image", false,
 				"/", "4.50", 178, 12, 7.8, "/",
 				"field1", "field2", "field3", "field4", "field5");
-		MusicDO musicDO3 = new MusicDO(1, "Piya O Re Piya", "Piya O Re Piya | Atif Aslam | Shreya Ghoshal | Tere Naal Love Ho Gaya", "https://i.ytimg.com/vi/G4rKD4pRd5E/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAism-wDufEfyetLWuCrBLQoG79Gg", "background_image", false,
+		MusicDO musicDO3 = new MusicDO(3, "Piya O Re Piya", "Piya O Re Piya | Atif Aslam | Shreya Ghoshal | Tere Naal Love Ho Gaya", "https://i.ytimg.com/vi/G4rKD4pRd5E/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAism-wDufEfyetLWuCrBLQoG79Gg", "background_image", false,
 				"/", "6.50", 178, 12, 7.8, "/",
 				"field1", "field2", "field3", "field4", "field5");
 		l1.add(musicDO1);
 		l1.add(musicDO2);
 		l1.add(musicDO3);
 		return new ResponseEntity<>(l1,HttpStatus.OK);
+		
+	}
+	
+	@GetMapping("/music/{id}")
+	public ResponseEntity<?> getMusic(@PathVariable("id") long id){
+		List<MusicDO> l1 = new ArrayList<>();
+		MusicDO musicDO1 = new MusicDO(1, "Dil Ka Rishta - Jhankar ", "Tum Na Aaye Ho Tum Naa Aaoge", "https://i.ytimg.com/vi/u5MN540x3Tk/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBFm7IRIOL7RrmB4KqJIu1jKGQwAg", "background_image", false,
+				"/", "3.50", 178, 12, 7.8, "/",
+				"field1", "field2", "field3", "field4", "field5");
+		MusicDO musicDO2 = new MusicDO(2, "Tera Ye Ishq Mera Fitoor", "Tera Ye Ishq Mera Fitoor Lyrics - Arijit Singh | Neeti Mohan | Ranbir K,Vaani K| Mithoon | Shamshera", "https://i.ytimg.com/vi/j-rne2Q5fao/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBi94CO_468wdRdpIMiePetx9WHcg", "background_image", false,
+				"/", "4.50", 178, 12, 7.8, "/",
+				"field1", "field2", "field3", "field4", "field5");
+		MusicDO musicDO3 = new MusicDO(3, "Piya O Re Piya", "Piya O Re Piya | Atif Aslam | Shreya Ghoshal | Tere Naal Love Ho Gaya", "https://i.ytimg.com/vi/G4rKD4pRd5E/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAism-wDufEfyetLWuCrBLQoG79Gg", "background_image", false,
+				"/", "6.50", 178, 12, 7.8, "/",
+				"field1", "field2", "field3", "field4", "field5");
+		l1.add(musicDO1);
+		l1.add(musicDO2);
+		l1.add(musicDO3);
+		System.out.println("id::"+id);
+		Optional<MusicDO> res= l1.stream().filter(e -> e.getId()==id).findAny();//.map(e -> e).collect(Collectors.toList());
+		
+		return new ResponseEntity<>(res,HttpStatus.OK);
 		
 	}
 
