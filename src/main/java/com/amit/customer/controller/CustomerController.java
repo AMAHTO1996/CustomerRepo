@@ -15,6 +15,21 @@ import com.amit.customer.entities.UserDO;
 import com.amit.customer.service.CustomerService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+
+import org.hibernate.engine.jdbc.StreamUtils;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
+
 @CrossOrigin(origins="*")
 @RestController
 public class CustomerController {
@@ -82,5 +97,47 @@ public class CustomerController {
 		return new ResponseEntity<>(res,HttpStatus.OK);
 		
 	}
+	
+	@GetMapping("/downloadVideo/{fileId}")
+   	public ResponseEntity<Resource> downloadVideo(@PathVariable String fileId) throws Exception {
+    	RestTemplate restTemplate = new RestTemplate();
+    	File file = restTemplate.execute("https://amahto.jfrog.io/artifactory/Image/RamSiyaRam.mp3", HttpMethod.GET, null, clientHttpResponse -> {
+    	    File ret = File.createTempFile("download", ".mp3");
+    	    StreamUtils.copy(clientHttpResponse.getBody(), new FileOutputStream(ret));
+    	    return ret;
+    	});
+    	byte[] content = null;
+    	try {
+    	    content = Files.readAllBytes(file.toPath());
+    	} catch (final IOException e) {
+    	}
+        return  ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType("application/octet-stream"))
+                .header(HttpHeaders.CONTENT_DISPOSITION,
+                        "attachment; filename=\"" + file.getName()
+                + "\"")
+                .body(new ByteArrayResource(content.clone()));
+    }
+    
+    @GetMapping("/downloadImage/{fileId}")
+    public ResponseEntity<Resource> downloadImage() throws Exception {
+    	RestTemplate restTemplate = new RestTemplate();
+    	File file = restTemplate.execute("https://amahto.jfrog.io/artifactory/Image/dil.jpg", HttpMethod.GET, null, clientHttpResponse -> {
+    	    File ret = File.createTempFile("download", ".jpg");
+    	    StreamUtils.copy(clientHttpResponse.getBody(), new FileOutputStream(ret));
+    	    return ret;
+    	});
+    	byte[] content = null;
+    	try {
+    	    content = Files.readAllBytes(file.toPath());
+    	} catch (final IOException e) {
+    	}
+        return  ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType("application/octet-stream"))
+                .header(HttpHeaders.CONTENT_DISPOSITION,
+                        "attachment; filename=\"" + file.getName()
+                + "\"")
+                .body(new ByteArrayResource(content.clone()));
+    }
 
 }
